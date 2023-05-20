@@ -105,15 +105,6 @@ alias j!=jbang
 export PATH="$HOME/.jbang/bin:$HOME/.jbang/currentjdk/bin:$PATH"
 export JAVA_HOME=$HOME/.jbang/currentjdk
 
-
-export GRAAL_HOME="${USER}/programs/graalvm"
-alias graal="export JAVA_HOME=${GRAAL_VM} ;"
-alias gs="git status"
-alias tf="terraform"
-alias tmux="TERM=screen-256color-bce tmux"
-alias gl='git log --oneline'
-alias c='clear'
-
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
@@ -122,4 +113,47 @@ export REPO_PATH="${USER}/repo"
 
 export PATH="$HOME/.local/bin:$PATH"
 alias notes="vim ~/notes.txt" # quick notes
+
+##########
+# Custom config/aliases
+
+## git
+alias gs="git status"
+alias gd="git diff"
+alias gl="git log --oneline"
+alias gc="git checkout"
+alias gpl="git pull"
+alias gph="git push"
+
+## docker
+alias dp="docker ps --format \"table {{.ID}}\t{{.Names}}\t{{.Status}}\t{{.State}}\t{{.Networks}}\""
+alias dc="docker compose"
+alias dsa="docker stop $(docker ps -a -q)"
+alias dra="docker stop $(docker ps -a -q); docker rm $(docker ps -a -q)"
+alias docker-compose="docker compose"
+
+## terraform
+alias tf="terraform"
+
+## routines
+export REPO_PATH="${HOME}/repo"
+
+### notes repo dependent
+export NOTES_REPO_PATH="${REPO_PATH}/note_modules" # reference to project
+alias new_day="${NOTES_REPO_PATH}/note.sh"
+alias note="vim ${HOME}/note"
+
+## misc
+alias c="clear"
+
+## source additional/custom scripts - private stuff
+_ADDITIONAL_SCRIPTS_PATH="${HOME}/.zshrc_additional_scripts"
+mkdir -p "${_ADDITIONAL_SCRIPTS_PATH}"
+
+if [ ! -z "$(ls -A ${_ADDITIONAL_SCRIPTS_PATH})" ]; then
+	for script in "${_ADDITIONAL_SCRIPTS_PATH}"/*.sh; do 
+		. "$script"
+	done
+fi
+
 
