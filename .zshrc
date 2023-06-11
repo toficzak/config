@@ -124,6 +124,7 @@ alias gl="git log --oneline"
 alias gc="git checkout"
 alias gpl="git pull"
 alias gph="git push"
+alias gwip='git commit -a -m "work in progress - fixup"'
 
 ## docker
 alias dp="docker ps --format \"table {{.ID}}\t{{.Names}}\t{{.Status}}\t{{.State}}\t{{.Networks}}\""
@@ -142,6 +143,7 @@ export REPO_PATH="${HOME}/repo"
 export NOTES_REPO_PATH="${REPO_PATH}/note_modules" # reference to project
 alias new_day="${NOTES_REPO_PATH}/note.sh"
 alias note="vim ${HOME}/note"
+alias push_notes="cd ${HOME}/repo/private_notes; git add .; git commit -m \"Add notes\"; git push "
 
 ## misc
 alias c="clear"
